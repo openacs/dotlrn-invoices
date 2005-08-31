@@ -224,7 +224,17 @@ ad_proc -public dotlrn_invoices::add_portlet {
 
     @param portal_id
 } {
-    invoices_portlet::add_self_to_page -portal_id $portal_id  -package_id 0
+    invoices_portlet::add_self_to_page \
+	-portal_id $portal_id \
+	-package_id 0
+    
+    invoices_list_portlet::add_self_to_page \
+	-portal_id $portal_id \
+	-package_id 0
+
+    invoices_offers_portlet::add_self_to_page \
+	-portal_id $portal_id \
+	-package_id 0
 }
 
 
@@ -305,11 +315,29 @@ ad_proc -private dotlrn_invoices::upgrade {
 	-to_version_name $to_version_name \
 	-spec {
 	    0.1d 0.1d1 {
-		# We are going to add contacts portlet to the 
+		# We are going to add invoice portlet to the 
 		# templates
 		
 		db_foreach get_portal_templates { } {
 		    invoices_portlet::add_self_to_page \
+			-portal_id $portal_id \
+			-package_id 0
+		}
+	    }
+	    0.1d1 0.1d2 {
+		# We are going to add invoice portlet to the 
+		# templates
+		
+		db_foreach get_portal_templates { } {
+		    invoices_portlet::add_self_to_page \
+			-portal_id $portal_id \
+			-package_id 0
+		    
+		    invoices_list_portlet::add_self_to_page \
+			-portal_id $portal_id \
+			-package_id 0
+		    
+		    invoices_offers_portlet::add_self_to_page \
 			-portal_id $portal_id \
 			-package_id 0
 		}

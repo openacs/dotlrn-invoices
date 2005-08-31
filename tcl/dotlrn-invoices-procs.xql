@@ -8,7 +8,7 @@
 	from 
 		portals 
 	where 
-		name in ('#dotlrn.subcommunities_pretty_plural# Portal','#dotlrn.class_instance_portal_pretty_name# Portal','#dotlrn.clubs_pretty_plural# Portal') 
+		name in ('#dotlrn.subcommunities_pretty_plural# Portal','#dotlrn.class_instance_portal_pretty_name# Portal','#dotlrn.clubs_pretty_plural# Portal','#dotlrn.user_portal_pretty_name# Portal') 
 		and template_id is null;
     </querytext>
 </fullquery>
