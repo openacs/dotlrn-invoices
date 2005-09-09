@@ -81,7 +81,7 @@ ad_proc -public dotlrn_invoices::project_manager_create_helper {
 ad_proc -public dotlrn_invoices::add_applet_to_community {
     community_id
 } {
-    Add the calendar applet to a specific dotlrn community
+    Add the Invoices applet to a specific dotlrn community
 } {
 
 #    if {![dotlrn::is_package_mounted -package_key project_manager]} {
@@ -105,30 +105,11 @@ ad_proc -public dotlrn_invoices::add_applet_to_community_helper {
 
     @params community_id
 } {
-
-    # Mount the Invoice Package
-    set package_id [apm_package_id_from_key invoices]
-
-
-    set com_url [dotlrn_community::get_community_url $community_id]
-
-    array set node_info [site_node::get_from_url -url $com_url -exact]
-    set parent_id $node_info(node_id)
-
-    db_transaction {
-	set node_id [site_node::new \
-			 -name invoices \
-			 -parent_id $parent_id \
-			 -directory_p "t" \
-			 -pattern_p "t" \
-			]
-    }
-    #    set new_node [site_node::new -name invoices -parent_id $parent_id]
-    site_node::mount -node_id $node_id -object_id $package_id
-
-
+    # We don't want to create a new instance or mount a new site node
+    # for this invoices, always using "/invoices"
     # Set up the invoices portlet for this portal/community
-    
+
+    set package_id [apm_package_id_from_key invoices]    
     set portal_id [dotlrn_community::get_portal_id \
 		       -community_id $community_id \
 		      ]
