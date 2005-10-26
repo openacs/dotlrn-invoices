@@ -122,6 +122,8 @@ ad_proc -public dotlrn_invoices::add_applet_to_community_helper {
 
     invoices_offers_portlet::add_self_to_page -portal_id $portal_id  -package_id $package_id 
 
+    invoices_offers_project_portlet::add_self_to_page -portal_id $portal_id  -package_id $package_id 
+
 
     set admin_portal_id [dotlrn_community::get_admin_portal_id \
 			     -community_id $community_id
@@ -187,6 +189,11 @@ ad_proc -public dotlrn_invoices::add_user_to_community {
         -package_id $package_id \
         -param_action $param_action
 
+    invoices_offers_project_portlet::add_self_to_page \
+	-portal_id $portal_id \
+	-package_id $package_id \
+	-param_action $param_action
+
 
 }
 
@@ -216,6 +223,10 @@ ad_proc -public dotlrn_invoices::add_portlet {
     invoices_offers_portlet::add_self_to_page \
 	-portal_id $portal_id \
 	-package_id 0
+
+    invoices_offers_project_portlet::add_self_to_page \
+	-portal_id $portal_id \
+	-package_id 0
 }
 
 
@@ -238,6 +249,10 @@ ad_proc -public dotlrn_invoices::remove_portlet {
 	-package_id [ns_set get $args "package_id"]
 
     invoices_offers_portlet::remove_self_from_page \
+	-portal_id $portal_id \
+	-package_id [ns_set get $args "package_id"]
+
+    invoices_offers_project_portlet::remove_self_from_page \
 	-portal_id $portal_id \
 	-package_id [ns_set get $args "package_id"]
 
@@ -319,6 +334,17 @@ ad_proc -private dotlrn_invoices::upgrade {
 			-package_id 0
 		    
 		    invoices_offers_portlet::add_self_to_page \
+			-portal_id $portal_id \
+			-package_id 0
+		}
+	    }
+
+	    0.1d3 0.1d4 {
+		# We are going to add invoice portlet to the 
+		# templates
+		
+		db_foreach get_portal_templates { } {
+		    invoices_offers_project_portlet::add_self_to_page \
 			-portal_id $portal_id \
 			-package_id 0
 		}

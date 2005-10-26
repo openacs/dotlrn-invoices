@@ -7,7 +7,7 @@
     <initial-install-p>f</initial-install-p>
     <singleton-p>f</singleton-p>
     
-    <version name="0.1d3" url="http://openacs.org/repository/download/apm/dotlrn-invoices-0.1d3.apm">
+    <version name="0.1d4" url="http://openacs.org/repository/download/apm/dotlrn-invoices-0.1d4.apm">
         <owner url="mailto:kiesbye@theservice.de">Kiesbye Kiesbye</owner>
         <owner url="mailto:sussdorff@sussdorff.de">Malte Sussdorff</owner>
         <summary>dotLRN Invoices Applet.</summary>
@@ -15,7 +15,7 @@
         <description format="text/plain">dotLRN Invoices Applet.</description>
         <maturity>0</maturity>
 
-        <provides url="dotlrn-invoices" version="0.1d3"/>
+        <provides url="dotlrn-invoices" version="0.1d4"/>
         <requires url="invoices-portlet" version="0.1d"/>
 
         <callbacks>
