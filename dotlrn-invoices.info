@@ -16,7 +16,7 @@
         <maturity>0</maturity>
 
         <provides url="dotlrn-invoices" version="0.1d4"/>
-        <requires url="invoices-portlet" version="0.1d"/>
+        <requires url="invoices-portlet" version="0.1d2"/>
 
         <callbacks>
             <callback type="before-upgrade"  proc="dotlrn_invoices::upgrade"/>
